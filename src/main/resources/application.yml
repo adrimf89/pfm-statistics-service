@@ -1,0 +1,27 @@
+server:
+  port: ${PORT:20713}
+  servlet.context-path: /pfm-statistics-service
+
+spring:
+  profiles:
+    active: dev
+
+---
+spring:
+  config.active.on-profile: dev
+
+  activemq:
+    broker-url: vm://localhost?broker.persistent=false
+
+  data.mongodb:
+    host: localhost
+    port: 27017
+    database: pfm-statistics
+    username: admin
+    password: password
+    authentication-database: admin
+
+  logging.level:
+    com.adri.pfm: DEBUG
+    org.springframework.security: INFO
+    org.springframework.cloud: INFO
