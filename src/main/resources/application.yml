@@ -4,7 +4,11 @@ server:
 
 spring:
   profiles:
-    active: dev
+    active: local
+
+com.adri.pfm:
+  transaction:
+    transaction-status-queue: transaction-status-queue
 
 ---
 spring:
@@ -12,6 +16,28 @@ spring:
 
   activemq:
     broker-url: vm://localhost?broker.persistent=false
+
+  data.mongodb:
+    host: localhost
+    port: 27017
+    database: pfm-statistics
+    username: admin
+    password: password
+    authentication-database: admin
+
+  logging.level:
+    com.adri.pfm: DEBUG
+    org.springframework.security: INFO
+    org.springframework.cloud: INFO
+
+---
+spring:
+  config.active.on-profile: local
+
+  activemq:
+    broker-url: tcp://localhost:61616
+    user: amq
+    password: amq
 
   data.mongodb:
     host: localhost
